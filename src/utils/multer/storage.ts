@@ -9,7 +9,6 @@ export const storage = () =>
       cb(null, uploadPath);
     },
     filename: (req, file, cb) => {
-      const uniqueSuffix = Math.round(Math.random() * 1e9);
-      cb(null, `${file.originalname.replace(".pdf", "")}-${uniqueSuffix}.pdf`);
+      cb(null, file.originalname);
     },
   });
