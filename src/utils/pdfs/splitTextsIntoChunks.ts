@@ -1,7 +1,7 @@
 import { Document } from "langchain/dist/document";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 
-export const splitTextsInChunks = async (
+export const splitTextsIntoChunks = async (
   // eslint-disable-next-line prettier/prettier
   docs: Document<Record<string, any>>[]
 ) => {
