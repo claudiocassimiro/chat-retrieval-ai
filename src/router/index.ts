@@ -9,6 +9,7 @@ const router = Router();
 const upload = multer({ storage: storage() });
 
 router.post("/api/files", upload.single("file"), pdfController.save);
+router.delete("/api/deleteAllDocs", pdfController.deleteAllDocuments);
 router.post("/api/question", questionController.question);
 
 export default router;
