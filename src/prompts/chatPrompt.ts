@@ -1,10 +1,10 @@
 import { LLMChain } from "langchain/chains";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { ChatPromptTemplate } from "langchain/prompts";
-import pdfService from "../services/uploadFilesService/pdfService";
+import handlerVectorDB from "../services/applicationService/handlerVectorDB";
 
 export const chatPrompt = async (question: string) => {
-  const context = await pdfService.search(question);
+  const context = await handlerVectorDB.search(question);
 
   const chat = new ChatOpenAI({ temperature: 0 });
   const chatPrompt = ChatPromptTemplate.fromMessages([

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { splitTextsIntoChunks } from "../../utils/pdfs/splitTextsIntoChunks";
 import { findPDFByFilename } from "../../utils/pdfs/findPDFByFilename";
-import pdfService from "../../services/uploadFilesService/pdfService";
+import handlerVectorDB from "../../services/applicationService/handlerVectorDB";
 import fs from "fs";
 import path from "path";
 
@@ -18,7 +18,7 @@ const save = async (req: Request, res: Response) => {
     return res.status(400).json({ message: "The uploaded file was empty" });
   }
 
-  await pdfService.save(splitedDocument);
+  await handlerVectorDB.save(splitedDocument);
 
   return res.status(200).json({ message: "File uploaded successfully" });
 };
