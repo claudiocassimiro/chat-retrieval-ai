@@ -6,6 +6,10 @@ import handlerVectorDB from "../services/applicationService/handlerVectorDB";
 export const chatPrompt = async (question: string) => {
   const context = await handlerVectorDB.search(question);
 
+  if (context?.length === 0) {
+    return "Desculpe, mas não tenho informações sobre esse assunto";
+  }
+
   const chat = new ChatOpenAI({ temperature: 0 });
   const chatPrompt = ChatPromptTemplate.fromMessages([
     [
@@ -15,12 +19,12 @@ export const chatPrompt = async (question: string) => {
     ["human", "{question}"],
   ]);
 
-  const chainB = new LLMChain({
+  const chain = new LLMChain({
     prompt: chatPrompt,
     llm: chat,
   });
 
-  const message = await chainB.call({
+  const message = await chain.call({
     context: context?.map((ctx) => ctx.pageContent),
     question,
   });
