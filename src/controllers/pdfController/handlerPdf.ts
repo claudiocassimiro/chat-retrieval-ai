@@ -68,7 +68,7 @@ const deleteAllDocuments = async (req: Request, res: Response) => {
       });
     });
 
-    return res.status(201).json({ message: `files deleted with success.` });
+    return res.status(204).json({ message: `files deleted with success.` });
   });
 };
 
